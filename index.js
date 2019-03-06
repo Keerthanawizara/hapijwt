@@ -2,10 +2,8 @@ const Hapi = require('hapi');
 const JWT  = require('jsonwebtoken');
 //const UserSchema = require('./database.js');
 const people = { // our "users database"
-    1: {
-      id: 1,
-      permission: 'ADMIN'
-    }
+      username:'test',
+      password:'keerthi'  
 };
  
 // bring your own validation function
@@ -35,7 +33,7 @@ const init = async () => {
  
   server.route([
     {
-      method: "GET", path: "/", config: { auth: false },
+      method: "POST", path: "/", config: { auth: false },
       handler: function(request, h) {
           //const session  = request.auth.credentials;
           //ession.permission = 'SUPER_ADMIN';
@@ -45,7 +43,7 @@ const init = async () => {
       }
     },
     {
-      method: 'GET', path: '/restricted', config: { auth: 'jwt' },
+      method: 'POST', path: '/restricted', config: { auth: 'jwt' },
       handler: function(request, h) {
        return h.response({text: token })
         .header("Authorization", request.headers.authorization);
