@@ -2,15 +2,21 @@
   "name": "jwt",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "hapi": "^18.1.0",
+    "hapi-auth-basic": "^5.0.0",
     "hapi-auth-jwt2": "^8.3.0",
-    "mongoose": "^5.4.17"
+    "hapi-authorization": "^4.0.0",
+    "hapi-swagger": "^9.3.1",
+    "inert": "^5.1.2",
+    "mongoose": "^5.4.17",
+    "vision": "^5.4.4"
   }
 }
