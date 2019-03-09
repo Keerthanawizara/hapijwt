@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
  // email: { type: String, required: true, index: { unique: true } },
-  username: { type: String },
-  password: { type: String, required: true },
-  role: { type: Boolean, required: true }
+  username: { type: String},
+  password: { type: String },
+  role: { type: String }
 });
 
 // const loginUser = (username) => {
@@ -21,5 +21,5 @@ const userSchema = new Schema({
 
 
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('user', userSchema);
     // loginUser = loginUser;

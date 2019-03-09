@@ -33,31 +33,51 @@ const user = require('../models/model.js');
 
 // }
 module.exports = {
-    create(req, h) {
-        if (!req.payload.username) {
-            return h.response({er: 'name is required field'}).code(400);
+    create: {
+        async  handler(request, h) {
+          try {
+            const user = await new user({
+              username: request.payload.username,
+              password: request.payload.password,
+              role: request.payload.role
+            });
+            user.save();
+            return h.response({ message: " created successfully", user });
+          } catch (err) {
+              console.log(err)
+            return h.response({message: "err",err});
+          }
         }
-        user.create({
-            username: req.payload.name,
-            password: req.payload.password,
-            role: req.payload.role
-        }, (err,user) => {
-            if (err) {
-                return h.response(err).code(500);
-            }
-            return h.response(user);
-        });
-    },
-    find(req, h) {
+      }
+    // create(req, h) {
+    //     if (!req.payload.username) {
+    //         return h.response('success')//({er: 'name is required field'}).code(400);
+    //     }
+    //     user.create({
+    //         username: req.payload.name,
+    //         password: req.payload.password,
+    //         role: req.payload.role
+    //     }, (err,user) => {
+    //         if (err) {
+    //             console.log(err)
+    //             //return h.response(err).code(500);
+    //            return h.response('err');
+    //         }
+    //         //return h.response(user);
+    //         return h.response('user');
+    //     });
+    // },
+    // find(req, h) {
 
-        user.find({}, (err, user) => {
-            if (err) {
-                return h.response(err).code(404);
-            }
-            return h.response(user);
-        })
-    }
+    //     user.find({}, (err, user) => {
+    //         if (err) {
+    //             return h.response(err).code(404);
+    //         }
+    //         return h.response(user);
+    //     })
+    // }
 };
 
 //module.exports = loginUser
 
+module.exports
